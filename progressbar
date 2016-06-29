@@ -49,20 +49,29 @@
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script>
         $(function () {
+        时间声明
             var time = 30, timer, progress = 0;
-
+            倒计时函数
             function countdown() {
+            时间递减，每次-1
                 time--;
+                获取到进度条的宽度
                 var test = $('.progress_bar').width();
+                将进度条进行30等分，每跳1s就加上相应的等分宽度
                 progress += test / 30.0;
                 $('.bar').width(progress);
+                时时显示倒计时的情况
                 $('.time').html(time + 's');
+                由于定时器的缘故，当时间为0时，清除定时器
                 if (time == 0) {
                     progress = 0;
+                    清除定时器
                     timer = clearInterval(timer);
+                    终止if()中的动作
                     return false;
                 }
             }
+            答题按钮点击的时候，开始出发定时器开始倒计时并执行函数countdown并将值返回。
             $('.btn').click(function () {
                 timer = setInterval(countdown, 1000);
                 return true;
