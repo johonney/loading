@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>进度条</title>
+    <link rel="stylesheet" href="">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: #400080;
+        }
+
+        .progress_bar {
+            width: 300px;
+            height: 30px;
+            margin: 100px auto;
+            border-radius: 15px;
+            background: -webkit-linear-gradient(left, #ADADAD, #C0C0C0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bar {
+            width: 0%;
+            height: 30px;
+            background: -webkit-linear-gradient(left, #FF7DFF, #FF53FF, #F200F2);
+            border-radius: 30px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transition: width 0.5s ease;
+        }
+
+        button, .time {
+            width: 60px;
+            height: auto;
+            margin: 0px 0px 0px 400px;
+        }
+
+        .time {
+            color: white;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var time = 30, timer, progress = 0;
+
+            function countdown() {
+                time--;
+                var test = $('.progress_bar').width();
+                progress += test / 30.0;
+                $('.bar').width(progress);
+                $('.time').html(time + 's');
+                if (time == 0) {
+                    progress = 0;
+                    timer = clearInterval(timer);
+                    return false;
+                }
+            }
+            $('.btn').click(function () {
+                timer = setInterval(countdown, 1000);
+                return true;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="progress_bar">
+    <div class="bar"></div>
+</div>
+<button name="answer" value="答题" class="btn">答题</button>
+<div class="time">30s</div>
+</body>
+</html>
