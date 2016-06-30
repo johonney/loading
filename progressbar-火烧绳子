@@ -35,24 +35,47 @@
 	<script src='http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js'></script>
 	<script>
 	$(function(){
+		// 声明读秒变量
 		var time = 30,timer;
+		// 答题按钮点击事件
 		$('#btn').click(function(){
-			$('.fire').css('display','block');
+			// 答题按钮按下时候，火焰淡入
+			$('.fire').fadeIn(1000);
+			// 倒计时函数
 			function countdown(){
+				// 30秒开始递减，减1
 				time--;
+				// 绳子长度变化
+				// 获取到绳子的宽度
 				var bar = $('.bar').width();
+				// 计算粗30分的一份长度
 				var each = bar/30;
+				// 每倒计时1秒时候，就减去一段长度
 				bar-= each;
+				// 减掉后的一段绳子的当前绳子宽度
 				$('.bar').width(bar);
+				// 火焰的位置变化
+				// 获取到fire的左边距离
+				var fire = $('.fire').css('left');
+				// 同绳子一样的道理
+				var fire_each = fire/30;
+				fire-=fire_each;
+				$('.fire').css('left','fire');
+				// 当读秒到0的时候的情况
 				if(time==0){
-					// $('.bar,.fire').css('opacity','0');
+					// 秒数到0的时候；绳子长度为0
+					each-=bar/30;
+					$('.bar').width(each);
+					// 并且清除定时器
 					timer = clearInterval(timer);
+					// 当绳子长度为0的时候，火焰就淡出
+					$('.fire').fadeOut(1000);
 				}
+				// 设置倒计时，时时的秒数显示格式
 				$('.time').html(time+'s');
 			}
-			$('.fire').css('display','block');
+			// 当答题按钮被点击的时候，就开启定时器并且调用倒计时countdown函数。
 			var timer = setInterval(countdown,1000);
-			return true;
 		})
 	})
 	</script>
