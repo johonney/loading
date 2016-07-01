@@ -72,8 +72,6 @@
 					$('.fire').fadeOut(1000);
 					return false;
 				}
-				// 设置倒计时，时时的秒数显示格式
-				$('.time').html(time+'s');
 			}
 			// 当答题按钮被点击的时候，就开启定时器并且调用倒计时countdown函数。
 			var timer = setInterval(countdown,1000);
